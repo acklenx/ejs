@@ -59,20 +59,39 @@
 
     <h2>Input template</h2>
     <textarea rows="8" class="pre" id="input">
+
       users:
-      <% if (users.length) { %>
+      {{% if (users.length) { %}}
         <ul>
-          <% users.forEach(function (user) { %>
-            <%# Notice how the single quotation mark is escaped in the output HTML %>
-            <li foo='<%= user.name + "'" %>'><%= user.name %></li>
-          <% }) %>
+          {{% users.forEach(function (user) {{ %}}
+            <li foo='{{%= user.name + "'s a " + user.species %}}'>{{%= user.name %}}</li>
+          {{% }}) %}}
         </ul>
-      <% } %>
+      {{% } %}}
+
+
 
     </textarea>
 
     <h2>Compilation options (JSON)</h2>
-    <textarea rows="8" class="pre" id="options"></textarea>
+    <textarea rows="8" class="pre" id="options">
+      {
+        "localsName": "data",
+        "delimiter": "%",
+        "openDelimiter": "{{",
+        "closeDelimiter": "}}",
+        "rmWhitespace": true,
+        "XXXroot": "./",
+        "XXXcontext": "Function execution context",
+        "XXXcompileDebug": true,
+        "XXXclient": true,
+        "XXXdebug": true,
+        "XXXstrict": false,
+        "XXX_with": false,
+        "XXXoutputFunctionName":"echoMe",
+        "XXXasync":true
+      }
+    </textarea>
 
     <h2>Locals (JSON)</h2>
     <textarea rows="8" class="pre" id="locals">
