@@ -58,13 +58,34 @@
     </h1>
 
     <h2>Input template</h2>
-    <textarea rows="8" class="pre" id="input"></textarea>
+    <textarea rows="8" class="pre" id="input">
+      users:
+      <% if (users.length) { %>
+        <ul>
+          <% users.forEach(function (user) { %>
+            <%# Notice how the single quotation mark is escaped in the output HTML %>
+            <li foo='<%= user.name + "'" %>'><%= user.name %></li>
+          <% }) %>
+        </ul>
+      <% } %>
+
+    </textarea>
 
     <h2>Compilation options (JSON)</h2>
     <textarea rows="8" class="pre" id="options"></textarea>
 
     <h2>Locals (JSON)</h2>
-    <textarea rows="8" class="pre" id="locals"></textarea>
+    <textarea rows="8" class="pre" id="locals">
+
+      {
+        "users": [
+          { "name": "Tobi", "age": 2, "species": "ferret" },
+          { "name": "Loki", "age": 2, "species": "ferret" },
+          { "name": "Jane", "age": 6, "species": "ferret" }
+        ]
+      }
+
+    </textarea>
 
     <h2 id="output-title">Output</h2>
     <pre id="output"></pre>
